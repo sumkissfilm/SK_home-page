@@ -66,10 +66,6 @@ header {
 
 .navbar-nav {
     gap: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
 }
 
 .nav-link {
@@ -143,7 +139,6 @@ header {
 
     .navbar-nav {
         gap: 0;
-        justify-content: flex-start;
     }
 
     .nav-item {
