@@ -11,136 +11,115 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Mobile Menu Toggle
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-const dropdowns = document.querySelectorAll('.dropdown');
-const menuOverlay = document.querySelector('.menu-overlay');
-const allNavLinks = document.querySelectorAll('.nav-links a');
-
+// Navigation Menu
 document.addEventListener('DOMContentLoaded', function() {
-    // 監聽所有導航連結的點擊事件
-    allNavLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            // 如果是子選單的返回按鈕，不關閉選單
-            if (this.parentElement.classList.contains('dropdown-menu')) {
-                return;
-            }
-            
-            // 如果是第一層選項且有子選單，不關閉選單
-            if (this.parentElement.classList.contains('dropdown')) {
-                return;
-            }
-            
-            // 如果是實際的連結，允許跳轉
-            if (this.getAttribute('href') && this.getAttribute('href') !== '#') {
-                // 關閉選單
-                navLinks.classList.remove('active');
-                menuOverlay.classList.remove('active');
-                
-                // 重置所有子選單
-                dropdowns.forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-                
-                // 允許連結跳轉
-                return true;
-            }
-            
-            // 其他情況關閉選單
-            navLinks.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            
-            // 重置所有子選單
+    console.log('初始化菜單...');
+    
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navContainer = document.querySelector('.nav-container');
+    const navOverlay = document.querySelector('.nav-overlay');
+    const dropdowns = document.querySelectorAll('.nav-item.dropdown');
+    
+    // 調試輸出菜單結構
+    console.log('菜單項數量:', dropdowns.length);
+    dropdowns.forEach((dropdown, i) => {
+        const link = dropdown.querySelector('.nav-link');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        const items = menu ? menu.querySelectorAll('li') : [];
+        console.log(`菜單項 ${i+1}:`, link ? link.textContent : '無鏈接');
+        console.log(`子菜單項數量:`, items.length);
+    });
+    
+    // 開關菜單
+    menuToggle.addEventListener('click', function() {
+        navContainer.classList.toggle('active');
+        navOverlay.classList.toggle('active');
+        
+        // 重置所有下拉菜單
+        dropdowns.forEach(dropdown => {
+            dropdown.classList.remove('active');
+        });
+    });
+    
+    // 點擊覆蓋層關閉菜單
+    if (navOverlay) {
+        navOverlay.addEventListener('click', function() {
+            navContainer.classList.remove('active');
+            navOverlay.classList.remove('active');
+            // 關閉所有已打開的下拉菜單
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        });
+    }
+    
+    // 在移動設備上處理下拉菜單
+    dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('.nav-link');
+        
+        if (link) {
+            link.addEventListener('click', function(e) {
+                // 僅在移動設備上
+                if (window.innerWidth <= 900) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // 關閉其他下拉菜單
+                    dropdowns.forEach(item => {
+                        if (item !== dropdown) {
+                            item.classList.remove('active');
+                        }
+                    });
+                    
+                    // 切換當前下拉菜單
+                    dropdown.classList.toggle('active');
+                }
+            });
+        }
+    });
+    
+    // 處理下拉菜單中的連結點擊
+    document.querySelectorAll('.dropdown-menu a').forEach(link => {
+        link.addEventListener('click', function() {
+            // 關閉菜單
+            navContainer.classList.remove('active');
+            navOverlay.classList.remove('active');
+            // 關閉所有下拉菜單
             dropdowns.forEach(dropdown => {
                 dropdown.classList.remove('active');
             });
         });
     });
-
-    // 監聽選單按鈕點擊事件
-    menuToggle.addEventListener('click', function() {
-        navLinks.classList.toggle('active');
-        menuOverlay.classList.toggle('active');
-    });
-
-    // 監聽遮罩層點擊事件
-    menuOverlay.addEventListener('click', function() {
-        navLinks.classList.remove('active');
-        menuOverlay.classList.remove('active');
-        dropdowns.forEach(dropdown => {
-            dropdown.classList.remove('active');
-        });
-    });
-
-    // 監聽視窗大小變化
+    
+    // 處理窗口調整大小
     window.addEventListener('resize', function() {
         if (window.innerWidth > 900) {
-            navLinks.classList.remove('active');
-            menuOverlay.classList.remove('active');
+            navContainer.classList.remove('active');
+            navOverlay.classList.remove('active');
             dropdowns.forEach(dropdown => {
                 dropdown.classList.remove('active');
             });
         }
     });
-
-    // 監聽每個主要選項的點擊事件
-    dropdowns.forEach(dropdown => {
-        const dropdownLink = dropdown.querySelector('a');
-        
-        dropdownLink.addEventListener('click', function(e) {
-            if (window.innerWidth <= 900) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                // 關閉其他打開的子選單
-                dropdowns.forEach(otherDropdown => {
-                    if (otherDropdown !== dropdown) {
-                        otherDropdown.classList.remove('active');
-                    }
-                });
-                
-                // 切換當前子選單
-                dropdown.classList.toggle('active');
-            }
-        });
-    });
-
-    // 監聽子選單中的連結點擊事件
-    const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
-    dropdownLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            if (this.getAttribute('href') && this.getAttribute('href') !== '#') {
-                // 如果是實際的連結，允許跳轉
-                navLinks.classList.remove('active');
-                menuOverlay.classList.remove('active');
-                dropdowns.forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-                return true;
-            }
-            
-            // 其他情況關閉選單
-            navLinks.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
-        });
-    });
 });
 
-// Smooth Scroll for Navigation Links
+// 平滑滾動
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+    anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        
+        const target = document.querySelector(href);
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
     });
 });
 
-// Add animation class to elements when they come into view
+// 動畫效果
 const observerOptions = {
     threshold: 0.1
 };
@@ -153,7 +132,6 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe elements that should be animated
 document.querySelectorAll('.service-card, .work-item').forEach(el => {
     observer.observe(el);
 }); 
