@@ -28,6 +28,7 @@ header {
     top: 0;
     z-index: 1000;
     transition: background-color 0.3s ease;
+    height: 80px;
 }
 
 header.scrolled {
@@ -38,10 +39,11 @@ header.scrolled {
 .navbar {
     background-color: transparent;
     transition: background-color 0.3s ease;
-    padding: 1rem 2rem;
+    padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 80px;
 }
 
 .navbar .container-fluid {
@@ -50,12 +52,18 @@ header.scrolled {
     align-items: center;
     width: 100%;
     padding: 0;
+    position: relative;
 }
 
 .navbar-brand {
     width: 290px;
     padding: 0;
     margin-right: 0;
+    position: absolute;
+    left: 2rem;
+    height: 80px;
+    display: flex;
+    align-items: center;
 }
 
 .navbar-brand img {
@@ -71,17 +79,66 @@ header.scrolled {
     font-size: 15px;
     font-weight: 300;
     color: #000;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    height: 80px;
+    cursor: pointer;
+    position: relative;
+    width: 24px;
+    margin-right: 1rem;
 }
 
-.navbar-toggler:focus {
-    box-shadow: none;
+.navbar-toggler span {
+    display: none;
+}
+
+.navbar-toggler::before,
+.navbar-toggler::after,
+.navbar-toggler .icon-bar {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: #000;
+    position: absolute;
+    transition: all 0.3s ease;
+    left: 0;
+}
+
+.navbar-toggler::before {
+    top: calc(50% - 8px);
+}
+
+.navbar-toggler::after {
+    bottom: calc(50% - 8px);
+}
+
+.navbar-toggler .icon-bar {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.navbar-toggler:not(.collapsed)::before {
+    transform: rotate(45deg);
+    top: 50%;
+}
+
+.navbar-toggler:not(.collapsed)::after {
+    transform: rotate(-45deg);
+    bottom: calc(50% - 1px);
+}
+
+.navbar-toggler:not(.collapsed) .icon-bar {
+    opacity: 0;
 }
 
 .navbar-collapse {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     flex-grow: 0;
+    width: 100%;
 }
 
 .navbar-nav {
@@ -91,7 +148,7 @@ header.scrolled {
     justify-content: center;
     position: static;
     transform: none;
-    margin-right: 2rem;
+    margin: 0;
 }
 
 .nav-link {
@@ -132,7 +189,8 @@ header.scrolled {
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-left: 1rem;
+    position: absolute;
+    right: 2rem;
 }
 
 .social-icons a {
@@ -153,17 +211,49 @@ header.scrolled {
 
 @media (max-width: 991px) {
     .navbar {
-        padding: 0.5rem 1rem;
+        padding: 0 1rem;
+        position: relative;
+    }
+
+    .navbar-brand {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        height: 80px;
+    }
+
+    .navbar-brand img {
+        width: 100%;
+        height: 40px;
+    }
+
+    .navbar-toggler {
+        position: absolute;
+        right: 1rem;
+        width: auto;
+        padding: 0 1rem;
+        z-index: 1000;
     }
 
     .navbar-collapse {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
         background: #fff;
         padding: 1rem;
-        border-radius: 8px;
+        border-radius: 0;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        margin-top: 1rem;
+        margin-top: 0;
         width: 100%;
-        justify-content: flex-start;
+        z-index: 999;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .navbar-collapse.show {
+        display: block;
     }
 
     .navbar-nav {
@@ -171,27 +261,49 @@ header.scrolled {
         transform: none;
         gap: 0;
         justify-content: flex-start;
-        margin-right: 0;
+        margin: 0;
+        padding: 0.5rem;
     }
 
     .nav-item {
         border-bottom: 1px solid #eee;
+        padding: 0.8rem 0;
     }
 
     .nav-item:last-child {
         border-bottom: none;
     }
 
+    .nav-link {
+        font-size: 16px;
+        padding: 0.3rem 0 !important;
+    }
+
     .dropdown-menu {
         border: none;
         box-shadow: none;
-        padding-left: 1rem;
+        padding: 0.5rem 1rem;
+        margin-top: 0.5rem;
+        background-color: #f8f8f8;
     }
 
     .social-icons {
-        margin-top: 1rem;
+        position: static;
+        margin-top: 0.5rem;
         justify-content: center;
-        margin-left: 0;
+        right: auto;
+        padding: 1rem 0;
+        border-top: 1px solid #eee;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand {
+        width: 160px;
+    }
+
+    .navbar-brand img {
+        height: 32px;
     }
 }
 
