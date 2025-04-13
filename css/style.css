@@ -44,9 +44,18 @@ header.scrolled {
     align-items: center;
 }
 
+.navbar .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+}
+
 .navbar-brand {
     width: 290px;
     padding: 0;
+    margin-right: 0;
 }
 
 .navbar-brand img {
@@ -68,14 +77,21 @@ header.scrolled {
     box-shadow: none;
 }
 
+.navbar-collapse {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow: 0;
+}
+
 .navbar-nav {
     gap: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    left: 20%;
-    transform: translateX(-50%);
+    position: static;
+    transform: none;
+    margin-right: 2rem;
 }
 
 .nav-link {
@@ -116,6 +132,7 @@ header.scrolled {
     display: flex;
     align-items: center;
     gap: 1rem;
+    margin-left: 1rem;
 }
 
 .social-icons a {
@@ -145,6 +162,8 @@ header.scrolled {
         border-radius: 8px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         margin-top: 1rem;
+        width: 100%;
+        justify-content: flex-start;
     }
 
     .navbar-nav {
@@ -152,6 +171,7 @@ header.scrolled {
         transform: none;
         gap: 0;
         justify-content: flex-start;
+        margin-right: 0;
     }
 
     .nav-item {
@@ -171,6 +191,7 @@ header.scrolled {
     .social-icons {
         margin-top: 1rem;
         justify-content: center;
+        margin-left: 0;
     }
 }
 
