@@ -119,4 +119,46 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化 Instagram
     loadInstagramPosts();
     initializeInstagram();
+
+    // 導航欄滾動效果
+    const navbar = document.querySelector('.navbar');
+    const scrollThreshold = 50;
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > scrollThreshold) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // 初始檢查滾動狀態
+    if (window.scrollY > scrollThreshold) {
+        navbar.classList.add('scrolled');
+    }
+
+    // 點擊導航鏈接時平滑滾動到目標位置
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const headerOffset = 100;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+
+                // 在移動設備上，點擊後關閉導航菜單
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (window.getComputedStyle(navbarToggler).display !== 'none') {
+                    navbarCollapse.classList.remove('show');
+                }
+            }
+        });
+    });
 });
