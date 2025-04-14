@@ -235,6 +235,40 @@ header.scrolled {
         align-items: center;
     }
 
+    .dropdown-menu {
+        border: none;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        border-radius: 4px;
+        padding: 0.5rem 0;
+    }
+
+    .dropdown-item {
+        font-family: "Noto Sans TC", sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        padding: 0.5rem 1rem;
+        color: #333;
+        transition: all 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+        background-color: rgba(247, 188, 81, 0.1);
+        color: #f7bc51;
+    }
+
+    .nav-link {
+        color: #000;
+        font-family: "Noto Sans TC", sans-serif;
+        font-size: 15px;
+        font-weight: 300;
+        padding: 0.5rem 1rem !important;
+        transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: #f7bc51;
+    }
+
     .navbar-nav {
         display: flex;
         flex-direction: row;
@@ -255,19 +289,6 @@ header.scrolled {
         opacity: 1;
         transform: none;
         transition: none;
-    }
-
-    .nav-link {
-        color: #000;
-        font-family: "Noto Sans TC", sans-serif;
-        font-size: 15px;
-        font-weight: 300;
-        padding: 0.5rem 1rem !important;
-        transition: color 0.3s ease;
-    }
-
-    .nav-link:hover {
-        color: #666;
     }
 
     .social-icons {
