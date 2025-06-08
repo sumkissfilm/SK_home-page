@@ -64,12 +64,20 @@ header.scrolled {
     height: 80px;
     display: flex;
     align-items: center;
+    cursor: pointer;
+    z-index: 1001;
 }
 
 .navbar-brand img {
     width: 100%;
     height: 48px;
     object-fit: contain;
+    pointer-events: none;
+}
+
+.navbar-brand:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
 }
 
 .navbar-toggler {
@@ -763,11 +771,8 @@ header.scrolled {
 
 /* ===== Body004 Section ===== */
 .body004 {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 5rem 1rem;
-    min-height: 500px;
+    padding: 4rem 0;
+    background-color: #fff;
 }
 
 .body004 .row-title {
@@ -801,33 +806,90 @@ header.scrolled {
 }
 
 .body004 .image-grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
-    width: 100%;
+    padding: 0 2rem;
 }
 
 .body004 .image-item {
     position: relative;
     width: 100%;
-    height: 400px;
+    padding-bottom: 52.63%; /* 1.90:1 比例 (1/1.90 * 100) */
     overflow: hidden;
     cursor: pointer;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.body004 .image-item a {
-    display: block;
+.body004 .image-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.body004 .image-item:hover .overlay {
+    opacity: 1;
+}
+
+.body004 .image-item .video-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 2rem;
+}
+
+.body004 .image-item .video-title {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-family: "Noto Sans TC", sans-serif;
+    text-align: left;
+}
+
+.body004 .image-item .video-button {
+    color: #f7bc51;
+    font-size: 3rem;
+    background: transparent;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
+    margin: auto;
+}
+
+.body004 .image-item:hover .video-button {
+    transform: scale(1.1);
+}
+
+.body004 .image-item .video-button i {
+    transition: transform 0.3s ease;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.body004 .image-item:hover .video-button i {
+    transform: scale(1.1);
 }
 
 .body004 .image-item img {
@@ -837,23 +899,48 @@ header.scrolled {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: all 0.3s ease;
-    display: block;
-    visibility: visible;
-}
-
-.body004 .image-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.body004 .image-item:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
 }
 
 .body004 .image-item:hover img {
     transform: scale(1.05);
-    filter: brightness(0.9);
+}
+
+.body004 .middle-images {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.body004 .image-item.half-width {
+    width: calc(50% - 1rem);
+    padding-bottom: calc(34.965% - 0.5rem); /* 保持 1.43:1 比例，但高度減半 */
+}
+
+@media (max-width: 768px) {
+    .body004 .image-grid {
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .body004 .image-item.half-width {
+        width: 100%;
+        padding-bottom: 52.63%; /* 恢復原始比例 */
+    }
+    
+    .body004 .middle-images {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .body004 .image-item .video-content {
+        padding: 1.5rem;
+    }
+    
+    .body004 .image-item .video-title {
+        font-size: 1rem;
+    }
 }
 
 /* ===== Services Section ===== */
