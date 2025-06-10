@@ -30,6 +30,12 @@
             margin-bottom: 30px;
         }
 
+        .loading-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
         .loading-bar {
             width: 200px;
             height: 3px;
@@ -51,6 +57,12 @@
             border-radius: 3px;
         }
 
+        .loading-percentage {
+            font-size: 14px;
+            color: #f7bc51;
+            min-width: 45px;
+        }
+
         @keyframes loading {
             0% {
                 left: -30%;
@@ -70,7 +82,10 @@
     <!-- Loading Animation -->
     <div class="loader-wrapper">
         <img src="images/header/summerkiss-logo.png" alt="Sum Kiss Film" class="loader-logo">
-        <div class="loading-bar"></div>
+        <div class="loading-container">
+            <div class="loading-bar"></div>
+            <div class="loading-percentage">0%</div>
+        </div>
     </div>
 
     <header>
@@ -262,9 +277,20 @@
         // Loading Animation Handler
         window.addEventListener('load', function() {
             const loader = document.querySelector('.loader-wrapper');
-            setTimeout(() => {
-                loader.classList.add('fade-out');
-            }, 1000);
+            const percentage = document.querySelector('.loading-percentage');
+            let progress = 0;
+            
+            const interval = setInterval(() => {
+                progress += 1;
+                percentage.textContent = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loader.classList.add('fade-out');
+                    }, 200);
+                }
+            }, 20);
         });
     </script>
 </body>
