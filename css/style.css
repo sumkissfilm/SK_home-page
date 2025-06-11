@@ -617,6 +617,43 @@ header.scrolled {
     }
 }
 
+/* Responsive styles for Summer Kisses LOGO */
+.body001 .text-content img {
+    max-width: 100%;
+    height: auto;
+    width: 362px;
+}
+
+@media screen and (max-width: 1200px) {
+    .body001 .text-content img {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .body001 .text-content img {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .body001 .text-content img {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .body001 .text-content img {
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .body001 .text-content img {
+        width: 200px;
+    }
+}
+
 /* ===== Body002 Section ===== */
 .body002 {
     width: 100%;
