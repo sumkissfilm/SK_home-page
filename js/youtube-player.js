@@ -77,10 +77,6 @@ class YouTubePlayer {
     createCustomControls(container) {
         const controlsContainer = document.createElement('div');
         controlsContainer.className = 'custom-youtube-controls';
-        
-        // 根據播放器 ID 創建不同風格的控制界面
-        const isFirstPlayer = this.containerId === 'youtube-player-1';
-        
         // 兩個播放器都使用完整功能風格
         controlsContainer.innerHTML = `
             <div class="controls-overlay full-style">
@@ -152,7 +148,6 @@ class YouTubePlayer {
                     
                     const currentTimeSpan = this.customControls.querySelector('.current-time');
                     const totalTimeSpan = this.customControls.querySelector('.total-time');
-                    
                     currentTimeSpan.textContent = this.formatTime(currentTime);
                     totalTimeSpan.textContent = this.formatTime(duration);
                 }
@@ -168,6 +163,10 @@ class YouTubePlayer {
 
     onPlayerReady(event) {
         this.isLoaded = true;
+        // 嘗試設定預設解析度為 1080p
+        if (this.player && this.player.setPlaybackQuality) {
+            this.player.setPlaybackQuality('hd1080');
+        }
         console.log(`YouTube player ready for video: ${this.videoId}`);
         
         // 更新自定義控制按鈕狀態

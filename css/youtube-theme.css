@@ -35,7 +35,7 @@
 
 /* 播放按鈕圖標 */
 .youtube-player-container .ytp-large-play-button .ytp-large-play-button-icon {
-    fill: white !important;
+    fill: #f7bc51 !important;
 }
 
 /* 控制按鈕 */
@@ -83,15 +83,6 @@
 
 .youtube-player-container .ytp-volume-slider-track {
     background-color: var(--yt-secondary-color) !important;
-}
-
-/* 全螢幕按鈕 */
-.youtube-player-container .ytp-fullscreen-button {
-    color: var(--yt-primary-color) !important;
-}
-
-.youtube-player-container .ytp-fullscreen-button:hover {
-    color: var(--yt-primary-hover) !important;
 }
 
 /* 設置按鈕 */

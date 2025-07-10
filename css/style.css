@@ -1044,15 +1044,6 @@ header.scrolled {
     color: #f7bc51 !important;
 }
 
-/* 自定義全螢幕按鈕顏色 */
-.youtube-player-container .ytp-fullscreen-button {
-    color: #f7bc51 !important;
-}
-
-.youtube-player-container .ytp-fullscreen-button:hover {
-    color: #e6a93a !important;
-}
-
 /* 自定義設置按鈕顏色 */
 .youtube-player-container .ytp-settings-button {
     color: #f7bc51 !important;
@@ -1117,7 +1108,7 @@ header.scrolled {
 .full-style .play-pause-btn {
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.2);
+    /*background: rgba(255, 255, 255, 0.2);*/
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1132,7 +1123,15 @@ header.scrolled {
 
 .full-style .play-pause-btn i {
     font-size: 16px;
-    color: white;
+    color: #f7bc51;
+}
+
+.play-pause-btn i, .volume-control i {
+    color: #fff;
+    transition: color 0.3s;
+}
+.play-pause-btn:hover i, .volume-control:hover i {
+    color: #f7bc51;
 }
 
 /* 音量控制樣式 */
@@ -1659,3 +1658,4 @@ footer {
     padding: 100px 0;
     background-color: #f9f9f9;
 }
+
