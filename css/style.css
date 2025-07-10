@@ -557,26 +557,73 @@ header.scrolled {
 /* ===== Body004 Section ===== */
 .body004 {
     padding: 4rem 0;
-    background-color: #fff;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%);
+    position: relative;
+    overflow: hidden;
 }
 
+/* 添加背景裝飾元素 */
+.body004::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(247, 188, 81, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(247, 188, 81, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(247, 188, 81, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* 添加微妙的網格圖案 */
+.body004::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(247, 188, 81, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(247, 188, 81, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* 確保內容在背景之上 */
 .body004 .image-grid {
+    position: relative;
+    z-index: 1;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1rem; /* 控制每個影片區塊的間距 */
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
+/* 為影片區塊添加陰影和邊框效果 */
 .body004 .image-item {
     position: relative;
     width: 100%;
-    padding-bottom: 52.63%;
     overflow: hidden;
     cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    background: #fff;
 }
 
+.body004 .image-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* 影片區塊的遮罩（hover 時顯示） */
 .body004 .image-item .overlay {
     position: absolute;
     top: 0;
@@ -590,84 +637,24 @@ header.scrolled {
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 1;
+    border-radius: 12px;
 }
 
 .body004 .image-item:hover .overlay {
     opacity: 1;
 }
 
-.body004 .image-item .video-content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 2rem;
-}
-
-.body004 .image-item .video-title {
-    color: white;
-    font-size: 1.2rem;
-    font-weight: 300;
-    margin: 0;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    font-family: "Noto Sans TC", sans-serif;
-    text-align: left;
-}
-
-.body004 .image-item .video-button {
-    color: #f7bc51;
-    font-size: 3rem;
-    background: transparent;
-    transition: all 0.3s ease;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    margin: auto;
-}
-
-.body004 .image-item:hover .video-button {
-    transform: scale(1.1);
-}
-
-.body004 .image-item .video-button i {
-    transition: transform 0.3s ease;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.body004 .image-item:hover .video-button i {
-    transform: scale(1.1);
-}
-
-.body004 .image-item img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.body004 .image-item:hover img {
-    transform: scale(1.05);
-}
-
+/* 中間兩個小影片的橫向排列容器 */
 .body004 .middle-images {
     display: flex;
     justify-content: center;
     gap: 2rem;
     width: 100%;
+    position: relative;
+    z-index: 1;
 }
 
+/* 小影片的外層（左右各一半寬） */
 .body004 .image-item.half-width {
     width: calc(50% - 1rem);
     position: relative;
@@ -675,11 +662,47 @@ header.scrolled {
     overflow: visible;
 }
 
+/* 小 iframe 的樣式 */
 .body004 .image-item.half-width iframe {
     width: 100%;
-    height: 315px;
-    border-radius: 8px;
+    height: 345px;
+    border-radius: 12px;
     position: relative;
+    border: none;
+}
+
+/* 大 iframe 的樣式 */
+.body004 .image-item iframe {
+    width: 100%;
+    height: 660px;
+    border-radius: 12px;
+    position: relative;
+    border: none;
+}
+
+/* 添加區塊標題樣式 */
+.body004 .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.body004 .section-title h2 {
+    font-family: "Noto Sans TC", sans-serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.body004 .section-title p {
+    font-family: "Noto Sans TC", sans-serif;
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
 }
 
 /* ===== Footer ===== */
@@ -797,8 +820,17 @@ footer {
         margin-bottom: 0;
     }
 
+    .body004 .section-title h2 {
+        font-size: 1.6rem;
+    }
+    
+    .body004 .section-title p {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    
     .body004 .image-grid {
-        gap: 1rem;
+        gap: 0.5rem;
         padding: 0 1rem;
     }
     
@@ -810,9 +842,13 @@ footer {
         height: 200px;
     }
     
+    .body004 .image-item iframe {
+        height: 400px;
+    }
+    
     .body004 .middle-images {
         flex-direction: column;
-        gap: 1rem;
+        gap: 0.5rem;
     }
 
     .body004 .image-item .video-content {
@@ -878,6 +914,23 @@ footer {
         width: 32px;
         height: 32px;
         font-size: 1.1rem;
+    }
+    
+    .body004 .section-title h2 {
+        font-size: 1.4rem;
+    }
+    
+    .body004 .section-title p {
+        font-size: 0.9rem;
+        padding: 0 1rem;
+    }
+    
+    .body004 .image-item iframe {
+        height: 300px;
+    }
+    
+    .body004 .image-item.half-width iframe {
+        height: 150px;
     }
 }
 
