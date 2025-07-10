@@ -335,6 +335,8 @@ header.scrolled {
         transform: none;
         width: auto;
         transition: none;
+        display: flex;
+        gap: 1.5rem;
     }
 
     .social-icons a {
