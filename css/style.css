@@ -688,12 +688,37 @@ header.scrolled {
     z-index: 1;
 }
 
+/* 預設最大字體（超過2560px） */
 .body004 .section-title h2 {
     font-family: "Noto Sans TC", sans-serif;
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 300;
     color: #333;
     margin-bottom: 1rem;
+}
+
+@media (max-width: 2560px) {
+    .body004 .section-title h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 1920px) {
+    .body004 .section-title h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .body004 .section-title h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .body004 .section-title h2 {
+        font-size: 1.4rem;
+    }
 }
 
 .body004 .section-title p {
@@ -838,10 +863,7 @@ footer {
         width: 100%;
     }
     
-    .body004 .image-item.half-width iframe {
-        height: 200px;
-    }
-    
+    .body004 .image-item.half-width iframe,
     .body004 .image-item iframe {
         height: 400px;
     }
@@ -930,7 +952,7 @@ footer {
     }
     
     .body004 .image-item.half-width iframe {
-        height: 150px;
+        height: 180px;
     }
 }
 
@@ -968,6 +990,11 @@ footer {
 @media screen and (max-width: 400px) {
     .body001 .text-content img {
         width: 200px;
+    }
+    
+    .body004 .image-item.half-width iframe,
+    .body004 .image-item iframe {
+        height: 250px;
     }
 }
 
