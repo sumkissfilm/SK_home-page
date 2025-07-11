@@ -1,18 +1,32 @@
-// Header Background Change on Scroll
+/* ========================================
+   SUMMER KISSES - MAIN JAVASCRIPT
+   ======================================== */
+
+// ===== GLOBAL VARIABLES =====
 const header = document.querySelector('header');
 const hero = document.querySelector('.hero');
 
-window.addEventListener('scroll', () => {
-    const heroBottom = hero.offsetTop + hero.offsetHeight;
-    if (window.scrollY > heroBottom) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-});
+// ===== HEADER SCROLL EFFECT =====
+/**
+ * 當滾動超過 hero 區塊時，為 header 添加背景色
+ */
+function initHeaderScrollEffect() {
+    window.addEventListener('scroll', () => {
+        const heroBottom = hero.offsetTop + hero.offsetHeight;
+        
+        if (window.scrollY > heroBottom) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+}
 
-// Navigation Menu
-document.addEventListener('DOMContentLoaded', function() {
+// ===== NAVIGATION MENU =====
+/**
+ * 初始化導航菜單功能
+ */
+function initNavigationMenu() {
     console.log('初始化菜單...');
     
     const menuToggle = document.querySelector('.menu-toggle');
@@ -21,117 +35,238 @@ document.addEventListener('DOMContentLoaded', function() {
     const dropdowns = document.querySelectorAll('.nav-item.dropdown');
     
     // 調試輸出菜單結構
+    logMenuStructure(dropdowns);
+    
+    // 綁定事件監聽器
+    bindMenuEventListeners(menuToggle, navContainer, navOverlay, dropdowns);
+}
+
+/**
+ * 輸出菜單結構的調試信息
+ * @param {NodeList} dropdowns - 下拉菜單元素列表
+ */
+function logMenuStructure(dropdowns) {
     console.log('菜單項數量:', dropdowns.length);
+    
     dropdowns.forEach((dropdown, i) => {
         const link = dropdown.querySelector('.nav-link');
         const menu = dropdown.querySelector('.dropdown-menu');
         const items = menu ? menu.querySelectorAll('li') : [];
+        
         console.log(`菜單項 ${i+1}:`, link ? link.textContent : '無鏈接');
         console.log(`子菜單項數量:`, items.length);
     });
-    
-    // 開關菜單
-    menuToggle.addEventListener('click', function() {
-        navContainer.classList.toggle('active');
-        navOverlay.classList.toggle('active');
-        
-        // 重置所有下拉菜單
-        dropdowns.forEach(dropdown => {
-            dropdown.classList.remove('active');
-        });
+}
+
+/**
+ * 綁定菜單相關的事件監聽器
+ * @param {Element} menuToggle - 菜單切換按鈕
+ * @param {Element} navContainer - 導航容器
+ * @param {Element} navOverlay - 導航覆蓋層
+ * @param {NodeList} dropdowns - 下拉菜單列表
+ */
+function bindMenuEventListeners(menuToggle, navContainer, navOverlay, dropdowns) {
+    // 菜單切換按鈕事件
+    menuToggle.addEventListener('click', () => {
+        toggleMenu(navContainer, navOverlay, dropdowns);
     });
     
-    // 點擊覆蓋層關閉菜單
+    // 覆蓋層點擊關閉菜單
     if (navOverlay) {
-        navOverlay.addEventListener('click', function() {
-            navContainer.classList.remove('active');
-            navOverlay.classList.remove('active');
-            // 關閉所有已打開的下拉菜單
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
+        navOverlay.addEventListener('click', () => {
+            closeMenu(navContainer, navOverlay, dropdowns);
         });
     }
     
-    // 在移動設備上處理下拉菜單
+    // 下拉菜單事件
+    bindDropdownEvents(dropdowns, navContainer, navOverlay);
+    
+    // 下拉菜單連結點擊事件
+    bindDropdownLinkEvents(navContainer, navOverlay, dropdowns);
+    
+    // 窗口大小調整事件
+    window.addEventListener('resize', () => {
+        handleWindowResize(navContainer, navOverlay, dropdowns);
+    });
+}
+
+/**
+ * 切換菜單開關狀態
+ * @param {Element} navContainer - 導航容器
+ * @param {Element} navOverlay - 導航覆蓋層
+ * @param {NodeList} dropdowns - 下拉菜單列表
+ */
+function toggleMenu(navContainer, navOverlay, dropdowns) {
+    navContainer.classList.toggle('active');
+    navOverlay.classList.toggle('active');
+    
+    // 重置所有下拉菜單
+    resetDropdowns(dropdowns);
+}
+
+/**
+ * 關閉菜單
+ * @param {Element} navContainer - 導航容器
+ * @param {Element} navOverlay - 導航覆蓋層
+ * @param {NodeList} dropdowns - 下拉菜單列表
+ */
+function closeMenu(navContainer, navOverlay, dropdowns) {
+    navContainer.classList.remove('active');
+    navOverlay.classList.remove('active');
+    resetDropdowns(dropdowns);
+}
+
+/**
+ * 重置所有下拉菜單狀態
+ * @param {NodeList} dropdowns - 下拉菜單列表
+ */
+function resetDropdowns(dropdowns) {
+    dropdowns.forEach(dropdown => {
+        dropdown.classList.remove('active');
+    });
+}
+
+/**
+ * 綁定下拉菜單事件
+ * @param {NodeList} dropdowns - 下拉菜單列表
+ * @param {Element} navContainer - 導航容器
+ * @param {Element} navOverlay - 導航覆蓋層
+ */
+function bindDropdownEvents(dropdowns, navContainer, navOverlay) {
     dropdowns.forEach(dropdown => {
         const link = dropdown.querySelector('.nav-link');
         
         if (link) {
-            link.addEventListener('click', function(e) {
-                // 僅在移動設備上
-                if (window.innerWidth <= 900) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    // 關閉其他下拉菜單
-                    dropdowns.forEach(item => {
-                        if (item !== dropdown) {
-                            item.classList.remove('active');
-                        }
-                    });
-                    
-                    // 切換當前下拉菜單
-                    dropdown.classList.toggle('active');
-                }
+            link.addEventListener('click', (e) => {
+                handleDropdownClick(e, dropdown, dropdowns);
             });
         }
     });
-    
-    // 處理下拉菜單中的連結點擊
+}
+
+/**
+ * 處理下拉菜單點擊事件
+ * @param {Event} e - 點擊事件
+ * @param {Element} dropdown - 當前下拉菜單
+ * @param {NodeList} dropdowns - 所有下拉菜單列表
+ */
+function handleDropdownClick(e, dropdown, dropdowns) {
+    // 僅在移動設備上處理
+    if (window.innerWidth <= 900) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // 關閉其他下拉菜單
+        closeOtherDropdowns(dropdown, dropdowns);
+        
+        // 切換當前下拉菜單
+        dropdown.classList.toggle('active');
+    }
+}
+
+/**
+ * 關閉其他下拉菜單
+ * @param {Element} currentDropdown - 當前下拉菜單
+ * @param {NodeList} dropdowns - 所有下拉菜單列表
+ */
+function closeOtherDropdowns(currentDropdown, dropdowns) {
+    dropdowns.forEach(item => {
+        if (item !== currentDropdown) {
+            item.classList.remove('active');
+        }
+    });
+}
+
+/**
+ * 綁定下拉菜單連結點擊事件
+ * @param {Element} navContainer - 導航容器
+ * @param {Element} navOverlay - 導航覆蓋層
+ * @param {NodeList} dropdowns - 下拉菜單列表
+ */
+function bindDropdownLinkEvents(navContainer, navOverlay, dropdowns) {
     document.querySelectorAll('.dropdown-menu a').forEach(link => {
-        link.addEventListener('click', function() {
-            // 關閉菜單
-            navContainer.classList.remove('active');
-            navOverlay.classList.remove('active');
-            // 關閉所有下拉菜單
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
+        link.addEventListener('click', () => {
+            closeMenu(navContainer, navOverlay, dropdowns);
         });
     });
+}
+
+/**
+ * 處理窗口大小調整事件
+ * @param {Element} navContainer - 導航容器
+ * @param {Element} navOverlay - 導航覆蓋層
+ * @param {NodeList} dropdowns - 下拉菜單列表
+ */
+function handleWindowResize(navContainer, navOverlay, dropdowns) {
+    if (window.innerWidth > 900) {
+        closeMenu(navContainer, navOverlay, dropdowns);
+    }
+}
+
+// ===== SMOOTH SCROLLING =====
+/**
+ * 初始化平滑滾動功能
+ */
+function initSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', handleSmoothScroll);
+    });
+}
+
+/**
+ * 處理平滑滾動事件
+ * @param {Event} e - 點擊事件
+ */
+function handleSmoothScroll(e) {
+    const href = this.getAttribute('href');
     
-    // 處理窗口調整大小
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 900) {
-            navContainer.classList.remove('active');
-            navOverlay.classList.remove('active');
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
-        }
+    // 跳過空連結
+    if (href === '#') return;
+    
+    const target = document.querySelector(href);
+    
+    if (target) {
+        e.preventDefault();
+        target.scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+}
+
+// ===== INTERSECTION OBSERVER =====
+/**
+ * 初始化交點觀察器動畫效果
+ */
+function initIntersectionObserver() {
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    }, observerOptions);
+
+    // 觀察需要動畫的元素
+    const animatedElements = document.querySelectorAll('.service-card, .work-item');
+    animatedElements.forEach(el => {
+        observer.observe(el);
     });
-});
+}
 
-// 平滑滾動
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href === '#') return;
-        
-        const target = document.querySelector(href);
-        if (target) {
-            e.preventDefault();
-            target.scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// 動畫效果
-const observerOptions = {
-    threshold: 0.1
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.service-card, .work-item').forEach(el => {
-    observer.observe(el);
+// ===== INITIALIZATION =====
+/**
+ * 當 DOM 加載完成後初始化所有功能
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    // 初始化各個功能模組
+    initHeaderScrollEffect();
+    initNavigationMenu();
+    initSmoothScrolling();
+    initIntersectionObserver();
+    
+    console.log('Summer Kisses 網站初始化完成');
 }); 
