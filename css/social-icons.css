@@ -97,15 +97,28 @@
     }
 }
 
-/* ===== FORCE ICON DISPLAY ===== */
-.social-icons a i {
+/* ===== FONT AWESOME ICON DISPLAY ===== */
+.social-icons a i,
+.social-icons a .fab,
+.social-icons a .fas,
+.social-icons a .far {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     width: 100% !important;
     height: 100% !important;
-    font-style: normal;
-    line-height: 1;
+    font-style: normal !important;
+    line-height: 1 !important;
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands" !important;
+    font-weight: 900 !important; /* solid weight for Free icons */
+    text-rendering: auto !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Specific weight for brand icons */
+.social-icons a .fab {
+    font-weight: 400 !important; /* brand weight */
 }
 
 /* ===== ACCESSIBILITY ===== */

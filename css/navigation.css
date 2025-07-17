@@ -215,8 +215,8 @@ header.scrolled {
     right: auto;
     padding: 1rem 0;
     border-top: 1px solid #eee;
-    opacity: 0;
-    transform: translateX(20px);
+    opacity: 1;
+    transform: none;
     transition: all 0.3s ease 0.35s;
     width: 100%;
     display: flex;
@@ -230,14 +230,14 @@ header.scrolled {
 
 .social-icons a {
     color: #333;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     transition: color 0.3s ease;
     text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     background: rgba(247, 188, 81, 0.1);
 }
@@ -320,8 +320,8 @@ header.scrolled {
         color: #000;
         font-size: 1.25rem;
         transition: color 0.3s ease;
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
