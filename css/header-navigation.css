@@ -274,7 +274,7 @@ body.menu-open {
 /* 導航連結樣式 */
 .nav-link {
     font-family: "Noto Sans TC", sans-serif;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 400;
     color: #333;
     text-decoration: none;
@@ -421,7 +421,7 @@ body.menu-open {
     
     /* 桌面版導航連結 */
     .nav-link {
-        font-size: 13px;
+        font-size: 14px;
         font-weight: 500;
         padding: 0.5rem 0;
         position: relative;
@@ -484,19 +484,24 @@ body.menu-open {
     
     .navbar .container-fluid {
         padding: 0;
+        justify-content: space-between;
     }
     
     .navbar-brand {
-        width: 250px;
-        margin-left: 30px;
+        width: 200px;
+        margin-left: 0;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
     }
     
     .navbar-brand img {
-        height: 40px;
+        height: 35px;
     }
     
     .navbar-toggler {
         margin-right: 30px;
+        z-index: 1002;
     }
     
     .navbar-collapse {
@@ -514,18 +519,24 @@ body.menu-open {
     
     .navbar .container-fluid {
         padding: 0;
+        justify-content: space-between;
     }
     
     .navbar-brand {
-        margin-left: 20px;
+        width: 180px;
+        margin-left: 0;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
     }
     
     .navbar-brand img {
-        height: 40px;
+        height: 30px;
     }
     
     .navbar-toggler {
         margin-right: 20px;
+        z-index: 1002;
     }
     
     .navbar-collapse {
@@ -534,7 +545,7 @@ body.menu-open {
     }
     
     .nav-link {
-        font-size: 12px;
+        font-size: 13px;
         padding: 0.5rem 0;
     }
     
