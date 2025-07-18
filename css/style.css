@@ -10,6 +10,7 @@
 }
 
 /* ===== FONT DEFINITIONS ===== */
+/* 自訂字體載入 - Juniper and Sage 字體 */
 @font-face {
     font-family: 'Juniper and Sage';
     src: url('../fonts/Juniper-and-Sage.woff2') format('woff2'),
@@ -19,11 +20,13 @@
 }
 
 /* ===== GLOBAL FONT SETTINGS ===== */
+/* 全域字體設定 - 使用 Noto Sans TC 作為主要字體 */
 * {
     font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* ===== GENERAL STYLES ===== */
+/* ===== GENERAL BODY STYLES ===== */
+/* 主要頁面樣式設定 */
 body {
     font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
@@ -33,268 +36,8 @@ body {
     text-rendering: optimizeLegibility;
 }
 
-/* ===== HEADER & NAVIGATION ===== */
-
-/* Header Container */
-header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    transition: background-color 0.3s ease;
-    height: 80px;
-}
-
-header.scrolled {
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-/* Navbar Container */
-.navbar {
-    background-color: transparent;
-    transition: background-color 0.3s ease;
-    padding: 0 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 80px;
-}
-
-.navbar .container-fluid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 0;
-    position: relative;
-}
-
-/* Brand Logo */
-.navbar-brand {
-    width: 290px;
-    padding: 0;
-    margin-right: 0;
-    position: absolute;
-    left: 2rem;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    z-index: 1001;
-}
-
-.navbar-brand img {
-    width: 100%;
-    height: 48px;
-    object-fit: contain;
-    pointer-events: none;
-}
-
-.navbar-brand:hover {
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
-}
-
-/* Hamburger Menu Button */
-.navbar-toggler {
-    border: none;
-    padding: 0.5rem 1rem;
-    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
-    font-size: 15px;
-    font-weight: 300;
-    font-style: normal;
-    color: #000;
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    height: 80px;
-    cursor: pointer;
-    position: relative;
-    width: 24px;
-    margin-right: 1rem;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.navbar-toggler span {
-    display: none;
-}
-
-.navbar-toggler::before,
-.navbar-toggler::after,
-.navbar-toggler .icon-bar {
-    content: '';
-    display: block;
-    width: 24px;
-    height: 2px;
-    background-color: #000;
-    position: absolute;
-    transition: all 0.3s ease;
-    left: 0;
-}
-
-.navbar-toggler::before {
-    top: calc(50% - 8px);
-}
-
-.navbar-toggler::after {
-    bottom: calc(50% - 8px);
-}
-
-.navbar-toggler .icon-bar {
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-/* Hamburger Animation */
-.navbar-toggler:not(.collapsed)::before {
-    transform: rotate(45deg);
-    top: 50%;
-}
-
-.navbar-toggler:not(.collapsed)::after {
-    transform: rotate(-45deg);
-    bottom: calc(50% - 1px);
-}
-
-.navbar-toggler:not(.collapsed) .icon-bar {
-    opacity: 0;
-}
-
-/* Mobile Menu Container */
-.navbar-collapse {
-    position: fixed;
-    top: 0;
-    right: 0;
-    background: #fff;
-    padding: 2rem;
-    border-radius: 0;
-    box-shadow: -4px 0 12px rgba(0,0,0,0.1);
-    margin-top: 0;
-    width: 300px;
-    z-index: 999;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    transform: translateX(100%);
-    opacity: 0;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    visibility: hidden;
-    overflow-y: auto;
-}
-
-.navbar-collapse.show {
-    transform: translateX(0);
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Navigation Menu */
-.navbar-nav {
-    position: static;
-    transform: none;
-    gap: 0;
-    justify-content: flex-start;
-    margin: 0;
-    padding: 1.5rem 0;
-    opacity: 0;
-    transform: translateX(20px);
-    transition: all 0.3s ease 0.2s;
-    flex: 1;
-}
-
-.navbar-collapse.show .navbar-nav {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Navigation Items */
-.nav-item {
-    border-bottom: 1px solid #eee;
-    padding: 1rem 0;
-    opacity: 0;
-    transform: translateX(20px);
-    transition: all 0.3s ease;
-}
-
-.navbar-collapse.show .nav-item {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Navigation Links */
-.nav-link {
-    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
-    font-size: 11px;
-    font-weight: 400;
-    font-style: normal;
-    color: #333;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    display: block;
-    padding: 0.3rem 0;
-    letter-spacing: 0.02em;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.nav-link:hover {
-    color: #f7bc51;
-}
-
-/* Animation Delays for Menu Items */
-.nav-item:nth-child(1) { transition-delay: 0.1s; }
-.nav-item:nth-child(2) { transition-delay: 0.15s; }
-.nav-item:nth-child(3) { transition-delay: 0.2s; }
-.nav-item:nth-child(4) { transition-delay: 0.25s; }
-.nav-item:nth-child(5) { transition-delay: 0.3s; }
-
-/* Social Icons */
-.social-icons {
-    position: relative;
-    margin-top: auto;
-    justify-content: center;
-    right: auto;
-    padding: 1rem 0;
-    border-top: 1px solid #eee;
-    opacity: 1;
-    transform: none;
-    transition: all 0.3s ease;
-    width: 100%;
-    display: flex;
-    gap: 1rem;
-}
-
-.navbar-collapse.show .social-icons {
-    opacity: 1;
-    transform: none;
-}
-
-.social-icons a {
-    color: #333;
-    font-size: 1.2rem;
-    transition: color 0.3s ease;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: rgba(247, 188, 81, 0.1);
-}
-
-.social-icons a:hover {
-    color: #f7bc51;
-    background: rgba(247, 188, 81, 0.2);
-    transform: scale(1.1);
-}
-
-/* ===== MAIN CONTENT SECTIONS ===== */
-
-/* Hero Section */
+/* ===== HERO SECTION ===== */
+/* 主要橫幅區塊樣式 - 恢復原始背景圖片設計 */
 .hero {
     position: relative;
     height: 700px;
@@ -316,7 +59,8 @@ header.scrolled {
     padding: 0 20px;
 }
 
-/* Body001 Section - About Us */
+/* ===== ABOUT US SECTION (BODY001) ===== */
+/* 關於我們區塊樣式 - 恢復原始設計 */
 .body001 {
     height: 456px;
     display: flex;
@@ -352,7 +96,7 @@ header.scrolled {
     margin: 0;
 }
 
-/* Button Styles */
+/* 按鈕樣式 - 恢復原始設計 */
 .text-button {
     display: inline-block;
     width: 200px;
@@ -374,7 +118,8 @@ header.scrolled {
     border-color: #f7bc51;
 }
 
-/* Body002 Section - Image Gallery */
+/* ===== IMAGE GALLERY SECTION (BODY002) ===== */
+/* 圖片展示區塊樣式 - 恢復原始設計 */
 .body002 {
     width: 100%;
     height: 600px;
@@ -417,7 +162,8 @@ header.scrolled {
     transform: translateY(-50%);
 }
 
-/* Body004 Section - Video Portfolio */
+/* ===== VIDEO PORTFOLIO SECTION (BODY004) ===== */
+/* 影片作品集區塊樣式 - 恢復原始設計 */
 .body004 {
     padding: 4rem 0;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%);
@@ -425,7 +171,7 @@ header.scrolled {
     overflow: hidden;
 }
 
-/* Background Decorative Elements */
+/* 背景裝飾元素 - 恢復原始設計 */
 .body004::before {
     content: '';
     position: absolute;
@@ -456,7 +202,7 @@ header.scrolled {
     z-index: 0;
 }
 
-/* Section Title */
+/* 區塊標題樣式 - 恢復原始設計 */
 .body004 .section-title {
     text-align: center;
     margin-bottom: 3rem;
@@ -481,7 +227,7 @@ header.scrolled {
     line-height: 1.6;
 }
 
-/* Video Grid */
+/* 影片網格容器 - 恢復原始設計 */
 .body004 .image-grid {
     position: relative;
     z-index: 1;
@@ -493,7 +239,7 @@ header.scrolled {
     padding: 0 2rem;
 }
 
-/* Video Items */
+/* 影片項目樣式 - 恢復原始設計 */
 .body004 .image-item {
     position: relative;
     width: 100%;
@@ -510,7 +256,7 @@ header.scrolled {
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* Video Overlay */
+/* 影片覆蓋層效果 - 恢復原始設計 */
 .body004 .image-item .overlay {
     position: absolute;
     top: 0;
@@ -531,7 +277,7 @@ header.scrolled {
     opacity: 1;
 }
 
-/* Middle Images Container */
+/* 中間影片容器 - 恢復原始設計 */
 .body004 .middle-images {
     display: flex;
     justify-content: center;
@@ -541,7 +287,7 @@ header.scrolled {
     z-index: 1;
 }
 
-/* Half-width Video Items */
+/* 半寬影片項目 - 恢復原始設計 */
 .body004 .image-item.half-width {
     width: calc(50% - 1rem);
     position: relative;
@@ -549,7 +295,7 @@ header.scrolled {
     overflow: visible;
 }
 
-/* Iframe Styles */
+/* Iframe 樣式 - 恢復原始設計 */
 .body004 .image-item.half-width iframe {
     width: 100%;
     height: 345px;
@@ -558,6 +304,7 @@ header.scrolled {
     border: none;
 }
 
+/* YouTube 嵌入影片樣式 - 恢復原始設計 */
 .body004 .image-item iframe {
     width: 100%;
     height: 660px;
@@ -566,267 +313,76 @@ header.scrolled {
     border: none;
 }
 
-/* ===== FOOTER ===== */
-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 3rem 0;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-}
-
-.footer-section {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.footer-section h3 {
-    font-family: "Noto Sans TC", sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    margin: 0;
-    white-space: nowrap;
-    color: #f7bc51;
-}
-
-.footer-section p {
-    font-family: "Noto Sans TC", sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    margin: 0;
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.6;
-}
-
-.footer-section p a {
-    color: rgba(255, 255, 255, 0.9);
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.footer-section p a:hover {
-    color: #f7bc51;
-}
-
-.footer-section .social-links {
-    display: flex;
-    gap: 1.2rem;
-    margin-top: 0.5rem;
-    border: none;
-    padding: 0;
-}
-
-.social-links a {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.25rem;
-    transition: all 0.3s ease;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    text-decoration: none;
-    border: none;
-}
-
-.social-links a:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.7);
-}
+/* ===== FOOTER SECTION ===== */
+/* 頁尾樣式已移至 css/footer.css 檔案中 */
 
 /* ===== RESPONSIVE DESIGN ===== */
 
-/* Desktop Navigation (992px+) */
+/* 桌面版樣式 (≥992px) */
 @media (min-width: 992px) {
-    .navbar-collapse {
-        position: static;
-        background: transparent;
-        padding: 0;
-        box-shadow: none;
-        width: auto;
-        height: auto;
-        transform: none;
-        opacity: 1;
-        visibility: visible;
-        overflow: visible;
-        display: flex;
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.3rem;
+    }
+    
+    .text-content .button-group {
         flex-direction: row;
-        align-items: center;
+        gap: 1rem;
     }
-
-    .nav-link {
-        color: #000;
-        font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
-        font-size: 15px;
-        font-weight: 300;
-        font-style: normal;
-        padding: 0.5rem 1rem !important;
-        transition: color 0.3s ease;
-        letter-spacing: 0.02em;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-
-    .nav-link:hover {
-        color: #f7bc51;
-    }
-
-    .navbar-nav {
-        display: flex;
-        flex-direction: row;
-        gap: 1.5rem;
-        align-items: center;
-        justify-content: center;
-        position: static;
-        transform: none;
-        margin: 0;
-        padding: 0;
-        opacity: 1;
-        flex: 0;
-    }
-
-    .nav-item {
-        border-bottom: none;
-        padding: 0;
-        opacity: 1;
-        transform: none;
-        transition: none;
-    }
-
-    .social-icons {
-        position: absolute;
-        right: 2rem;
-        margin: 0;
-        padding: 0;
-        border: none;
-        opacity: 1;
-        transform: none;
-        width: auto;
-        transition: none;
-        display: flex;
-        gap: 1.5rem;
-    }
-
-    .social-icons a {
-        color: #000;
-        font-size: 1.25rem;
-        transition: color 0.3s ease;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        background: rgba(247, 188, 81, 0.1);
-        border-radius: 50%;
-    }
-
-    .social-icons a:hover {
-        color: #f7bc51;
-        background: none;
-        transform: none;
-    }
-}
-
-/* Tablet Navigation (768px-991px) */
-@media (max-width: 991px) {
-    .navbar {
-        padding: 0 1rem;
-        position: relative;
-    }
-
-    .navbar-brand {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+    
+    .text-button {
         width: 200px;
-        height: 80px;
-    }
-
-    .navbar-brand img {
-        width: 100%;
-        height: 40px;
-    }
-
-    .navbar-toggler {
-        position: absolute;
-        right: 1rem;
-        width: auto;
-        padding: 0 1rem;
-        z-index: 1000;
-    }
-
-    .navbar-collapse {
-        position: fixed;
-        top: 0;
-        right: 0;
-        background: #fff;
-        padding: 2rem;
-        box-shadow: -4px 0 12px rgba(0,0,0,0.1);
-        width: 300px;
-        height: 100vh;
-        transform: translateX(100%);
-        opacity: 0;
-        visibility: hidden;
-    }
-}
-
-/* Mobile Navigation (576px and below) */
-@media (max-width: 576px) {
-    .navbar-collapse {
-        width: 100%;
-    }
-    
-    .nav-link {
-        font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+        height: 43px;
+        line-height: 40px;
         font-size: 14px;
-        font-weight: 500;
-        font-style: normal;
-        padding: 0.8rem 0;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        letter-spacing: 0.02em;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
     }
     
-    .nav-item:last-child .nav-link {
-        border-bottom: none;
+    .text-button:last-child {
+        margin-left: 1rem;
     }
     
-    .social-icons {
-        padding: 1.5rem 0;
-        gap: 1.5rem;
+    .body004 .section-title h2 {
+        font-size: 3rem;
     }
     
-    .social-icons a {
-        width: 35px;
-        height: 35px;
-        font-size: 1.2rem;
-        background: rgba(247, 188, 81, 0.1);
-        border-radius: 50%;
+    .body004 .section-title p {
+        font-size: 1.3rem;
     }
+    
+    .body004 .image-grid {
+        gap: 3rem;
+    }
+    
+    .body004 .image-item.half-width {
+        width: calc(50% - 1rem);
+    }
+    
+    .body004 .image-item.half-width iframe,
+    .body004 .image-item iframe {
+        border-radius: 15px;
+    }
+    
+    .body004 .middle-images {
+        gap: 3rem;
+    }
+    
+    .body004 .image-item .video-content {
+        padding: 2rem;
+    }
+    
+    .body004 .image-item .video-title {
+        font-size: 1.5rem;
+    }
+    
+
 }
 
-/* Tablet Styles (768px and below) */
+/* 平板版樣式 (≤991px) - 已移至 header-navigation.css */
+
+/* 手機版樣式 (≤768px) */
 @media (max-width: 768px) {
     /* Hero Section */
     .hero h1 {
@@ -893,32 +449,10 @@ footer {
         font-size: 1rem;
     }
 
-    /* Footer */
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 2.5rem;
-    }
 
-    .footer-section {
-        align-items: center;
-    }
-
-    .footer-section .social-links {
-        justify-content: center;
-        margin-top: 1rem;
-        border: none;
-        padding: 0;
-    }
-
-    .footer-bottom {
-        margin-top: 2rem;
-        padding: 1.5rem 1rem 0;
-        font-size: 13px;
-    }
 }
 
-/* Mobile Styles (576px and below) */
+/* 小手機版樣式 (≤576px) */
 @media (max-width: 576px) {
     /* Button Styles */
     .text-content .button-group {
@@ -948,32 +482,10 @@ footer {
         height: 180px;
     }
 
-    /* Footer */
-    .footer-content {
-        gap: 2rem;
-        padding: 0 1rem;
-    }
 
-    .footer-section h3 {
-        font-size: 15px;
-    }
-
-    .footer-section p {
-        font-size: 14px;
-    }
-
-    .social-links {
-        gap: 1rem;
-    }
-
-    .social-links a {
-        width: 32px;
-        height: 32px;
-        font-size: 1.1rem;
-    }
 }
 
-/* Small Mobile Styles (400px and below) */
+/* 超小螢幕樣式 (≤400px) */
 @media screen and (max-width: 400px) {
     .body001 .text-content img {
         width: 200px;
@@ -985,13 +497,15 @@ footer {
     }
 }
 
-/* ===== LOGO RESPONSIVE STYLES ===== */
+/* ===== LOGO RESPONSIVE ADJUSTMENTS ===== */
+/* 關於我們區塊 Logo 響應式調整 */
 .body001 .text-content img {
     max-width: 100%;
     height: auto;
     width: 362px;
 }
 
+/* 大螢幕 Logo 調整 */
 @media screen and (max-width: 1200px) {
     .body001 .text-content img {
         width: 300px;
@@ -1016,7 +530,8 @@ footer {
     }
 }
 
-/* ===== SECTION TITLE RESPONSIVE STYLES ===== */
+/* ===== SECTION TITLE RESPONSIVE ADJUSTMENTS ===== */
+/* 影片作品集標題響應式調整 */
 @media (max-width: 2560px) {
     .body004 .section-title h2 {
         font-size: 2rem;

@@ -1,0 +1,557 @@
+/* ========================================
+   SUMMER KISSES - HEADER & NAVIGATION
+   ======================================== */
+
+/*
+    Header 導覽列樣式
+    - 頁首預設透明，滾動超過 hero 區塊時由 JS 加上 .scrolled 類別顯示白色背景
+    - 主要互動由 js/scroll.js 控制
+    - 響應式與選單動畫由 Bootstrap 與本檔案共同處理
+*/
+
+/* ===== HEADER CONTAINER ===== */
+/* 頁首容器樣式 */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+/* 滾動時的頁首樣式 */
+header.scrolled,
+header.scrolled.navbar,
+header.scrolled .navbar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== NAVBAR CONTAINER ===== */
+/* 導航列容器樣式 */
+.navbar {
+    padding: 1.2rem 0;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+/* 當 header 有 scrolled 類別時，navbar 也應該有背景 */
+header.scrolled .navbar {
+    background: rgba(255, 255, 255, 0.95) !important;
+}
+
+.navbar .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+}
+
+/* ===== BRAND LOGO ===== */
+/* 品牌 Logo 樣式 */
+.navbar-brand {
+    position: relative;
+    width: 300px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    z-index: 1001;
+    flex-shrink: 0;
+    margin-left: 50px;
+}
+
+.navbar-brand img {
+    height: 40px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+/* 當 header 有 scrolled 類別時，logo 保持正常顯示 */
+header.scrolled .navbar-brand img {
+    filter: none;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+.navbar-brand:hover img {
+    filter: brightness(1.1);
+}
+
+/* ===== HAMBURGER MENU BUTTON ===== */
+/* 漢堡選單按鈕樣式 */
+.navbar-toggler {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    transition: all 0.3s ease;
+}
+
+.navbar-toggler span {
+    font-family: "Noto Sans TC", sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+
+/* 漢堡按鈕線條樣式 */
+.navbar-toggler::before,
+.navbar-toggler::after,
+.navbar-toggler .icon-bar {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: #000;
+    position: absolute;
+    transition: all 0.3s ease;
+    left: 0;
+}
+
+/* 當 header 有 scrolled 類別時，漢堡按鈕線條保持黑色 */
+header.scrolled .navbar-toggler::before,
+header.scrolled .navbar-toggler::after,
+header.scrolled .navbar-toggler .icon-bar {
+    background-color: #000;
+}
+
+/* 上方線條位置 */
+.navbar-toggler::before {
+    top: calc(50% - 8px);
+}
+
+/* 下方線條位置 */
+.navbar-toggler::after {
+    bottom: calc(50% - 8px);
+}
+
+/* 中間線條位置 */
+.navbar-toggler .icon-bar {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ===== HAMBURGER ANIMATION ===== */
+/* 漢堡選單展開動畫 */
+.navbar-toggler:not(.collapsed)::before {
+    transform: rotate(45deg);
+    top: 50%;
+}
+
+.navbar-toggler:not(.collapsed)::after {
+    transform: rotate(-45deg);
+    bottom: calc(50% - 1px);
+}
+
+.navbar-toggler:not(.collapsed) .icon-bar {
+    opacity: 0;
+}
+
+/* ===== MOBILE MENU CONTAINER ===== */
+/* 行動版選單容器樣式 */
+.navbar-collapse {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 0;
+    box-shadow: -4px 0 12px rgba(0,0,0,0.1);
+    margin-top: 0;
+    width: 300px;
+    z-index: 999;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    visibility: hidden;
+    overflow-y: auto;
+}
+
+/* 選單展開狀態 */
+.navbar-collapse.show {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 選單開啟時防止背景滾動 */
+body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+/* ===== MENU CLOSE BUTTON ===== */
+/* 選單關閉按鈕樣式 */
+.menu-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.menu-close-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+}
+
+.close-icon {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    line-height: 1;
+}
+
+/* ===== NAVIGATION MENU ===== */
+/* 導航選單樣式 */
+.navbar-nav {
+    position: static;
+    transform: none;
+    gap: 0;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 1.5rem 0;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s ease 0.2s;
+    flex: 1;
+}
+
+/* 選單展開時的導航樣式 */
+.navbar-collapse.show .navbar-nav {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ===== NAVIGATION ITEMS ===== */
+/* 導航項目樣式 */
+.nav-item {
+    border-bottom: 1px solid #eee;
+    padding: 1rem 0;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s ease;
+}
+
+/* 選單展開時的項目樣式 */
+.navbar-collapse.show .nav-item {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ===== NAVIGATION LINKS ===== */
+/* 導航連結樣式 */
+.nav-link {
+    font-family: "Noto Sans TC", sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: block;
+    padding: 0.3rem 0;
+}
+
+/* 導航連結懸停效果 */
+.nav-link:hover {
+    color: #f7bc51;
+}
+
+/* ===== ANIMATION DELAYS ===== */
+/* 選單項目動畫延遲 - 創造階梯式動畫效果 */
+.nav-item:nth-child(1) { transition-delay: 0.1s; }
+.nav-item:nth-child(2) { transition-delay: 0.15s; }
+.nav-item:nth-child(3) { transition-delay: 0.2s; }
+.nav-item:nth-child(4) { transition-delay: 0.25s; }
+.nav-item:nth-child(5) { transition-delay: 0.3s; }
+
+/* ===== SOCIAL ICONS ===== */
+/* 社群媒體圖示容器樣式 */
+.social-icons {
+    position: relative;
+    margin-top: auto;
+    justify-content: center;
+    right: auto;
+    padding: 1rem 0;
+    border-top: 1px solid #eee;
+    opacity: 1;
+    transform: none;
+    transition: all 0.3s ease 0.35s;
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+/* 選單展開時的社群圖示樣式 */
+.navbar-collapse.show .social-icons {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 社群圖示連結樣式 */
+.social-icons a {
+    color: #333;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(247, 188, 81, 0.1);
+}
+
+/* 社群圖示懸停效果 */
+.social-icons a:hover {
+    color: #f7bc51;
+    background: rgba(247, 188, 81, 0.2);
+    transform: scale(1.1);
+}
+
+/* Font Awesome 圖示顯示設定 */
+.social-icons a i,
+.social-icons a .fab,
+.social-icons a .fas,
+.social-icons a .far {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    font-style: normal !important;
+    line-height: 1 !important;
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands" !important;
+    font-weight: 900 !important;
+    text-rendering: auto !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* 品牌圖示特定字重設定 */
+.social-icons a .fab {
+    font-weight: 400 !important;
+}
+
+/* 無障礙功能 - 焦點樣式 */
+.social-icons a:focus {
+    outline: 2px solid #f7bc51;
+    outline-offset: 2px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* ===== DESKTOP STYLES (≥992px) ===== */
+/* 桌面版導航樣式 */
+@media (min-width: 992px) {
+    /* 桌面版選單容器 */
+    .navbar-collapse {
+        position: static;
+        background: transparent;
+        padding: 0;
+        box-shadow: none;
+        width: auto;
+        height: auto;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        overflow: visible;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex: 1;
+    }
+    
+    /* 桌面版導航選單 */
+    .navbar-nav {
+        position: static;
+        transform: none;
+        opacity: 1;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        align-items: center;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    /* 桌面版導航項目 */
+    .nav-item {
+        border: none;
+        padding: 0;
+        opacity: 1;
+        transform: none;
+    }
+    
+    /* 桌面版導航連結 */
+    .nav-link {
+        font-size: 13px;
+        font-weight: 500;
+        padding: 0.5rem 0;
+        position: relative;
+    }
+    
+    .nav-link:hover {
+        color: #f7bc51;
+    }
+    
+    /* 桌面版社群圖示 */
+    .social-icons {
+        position: static;
+        margin: 0;
+        padding: 0;
+        border: none;
+        opacity: 1;
+        transform: none;
+        width: auto;
+        transition: none;
+        display: flex;
+        gap: 1.5rem;
+        margin-left: auto;
+        margin-right: 50px;
+    }
+    
+    /* 桌面版社群圖示連結 */
+    .social-icons a {
+        color: #000;
+        font-size: 1.25rem;
+        transition: color 0.3s ease;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        background: rgba(247, 188, 81, 0.1);
+        border-radius: 50%;
+    }
+    
+    /* 桌面版社群圖示懸停效果 */
+    .social-icons a:hover {
+        color: #f7bc51;
+        background: none;
+        transform: none;
+    }
+    
+    /* 隱藏關閉按鈕 */
+    .menu-close-btn {
+        display: none;
+    }
+}
+
+/* ===== TABLET STYLES (≤991px) ===== */
+/* 平板版樣式 */
+@media (max-width: 991px) {
+    .navbar {
+        padding: 1.5rem 1rem;
+    }
+    
+    .navbar .container-fluid {
+        padding: 0;
+    }
+    
+    .navbar-brand {
+        width: 250px;
+        margin-left: 30px;
+    }
+    
+    .navbar-brand img {
+        height: 40px;
+    }
+    
+    .navbar-toggler {
+        margin-right: 30px;
+    }
+    
+    .navbar-collapse {
+        width: 280px;
+        padding: 1.5rem;
+    }
+}
+
+/* ===== MOBILE STYLES (≤576px) ===== */
+/* 手機版樣式 */
+@media (max-width: 576px) {
+    .navbar {
+        padding: 1.5rem 0;
+    }
+    
+    .navbar .container-fluid {
+        padding: 0;
+    }
+    
+    .navbar-brand {
+        margin-left: 20px;
+    }
+    
+    .navbar-brand img {
+        height: 40px;
+    }
+    
+    .navbar-toggler {
+        margin-right: 20px;
+    }
+    
+    .navbar-collapse {
+        width: 100%;
+        padding: 1rem;
+    }
+    
+    .nav-link {
+        font-size: 12px;
+        padding: 0.5rem 0;
+    }
+    
+    .nav-item:last-child .nav-link {
+        border-bottom: none;
+    }
+    
+    .social-icons {
+        gap: 0.8rem;
+        padding: 1.5rem 0;
+    }
+    
+    .social-icons a {
+        width: 20px;
+        height: 20px;
+        font-size: 1.2rem;
+        background: rgba(247, 188, 81, 0.1);
+        border-radius: 50%;
+    }
+} 

@@ -39,13 +39,10 @@ const navbarCollapse = document.querySelector('.navbar-collapse');
 
 /**
  * 處理頁首滾動效果
+ * 注意：此功能已移至 scroll.js 統一處理
  */
 function handleHeaderScroll() {
-    if (window.scrollY > SCROLL_THRESHOLD) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
+    // 此功能已移至 scroll.js 統一處理
 }
 
 /**
@@ -61,15 +58,10 @@ function handleNavbarScroll() {
 
 /**
  * 處理 Hero 區塊的滾動效果
+ * 注意：此功能已移至 scroll.js 統一處理
  */
 function handleHeroScroll() {
-    const heroBottom = hero.offsetTop + hero.offsetHeight;
-    
-    if (window.scrollY > heroBottom) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
+    // 此功能已移至 scroll.js 統一處理
 }
 
 // ===== NAVIGATION MENU =====
@@ -224,11 +216,12 @@ function bindNavigationEvents() {
 
 /**
  * 綁定滾動事件
+ * 注意：Header 和 Hero 滾動效果已移至 scroll.js 統一處理
  */
 function bindScrollEvents() {
-    window.addEventListener('scroll', handleHeaderScroll);
+    // handleHeaderScroll 已移至 scroll.js 統一處理
     window.addEventListener('scroll', handleNavbarScroll);
-    window.addEventListener('scroll', handleHeroScroll);
+    // handleHeroScroll 已移至 scroll.js 統一處理
 }
 
 /**

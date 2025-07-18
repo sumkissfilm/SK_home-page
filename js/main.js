@@ -3,23 +3,109 @@
    ======================================== */
 
 // ===== GLOBAL VARIABLES =====
-const header = document.querySelector('header');
-const hero = document.querySelector('.hero');
+// 注意：header 和 hero 變數已在 scroll.js 中定義，避免重複定義
 
 // ===== HEADER SCROLL EFFECT =====
 /**
  * 當滾動超過 hero 區塊時，為 header 添加背景色
+ * 注意：此功能已移至 scroll.js 統一處理
  */
 function initHeaderScrollEffect() {
-    window.addEventListener('scroll', () => {
-        const heroBottom = hero.offsetTop + hero.offsetHeight;
+    // 此功能已移至 scroll.js 統一處理
+    console.log('Header scroll effect 已移至 scroll.js 處理');
+}
+
+// ===== BOOTSTRAP NAVIGATION MENU =====
+/**
+ * 初始化 Bootstrap 導航選單功能
+ */
+function initBootstrapNavigation() {
+    console.log('初始化 Bootstrap 導航選單...');
+    
+    // 獲取選單元素
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    const menuCloseBtn = document.querySelector('.menu-close-btn');
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    
+    // 監聽 Bootstrap 選單狀態變化
+    if (navbarCollapse) {
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    if (navbarCollapse.classList.contains('show')) {
+                        // 選單開啟時防止背景滾動
+                        document.body.classList.add('menu-open');
+                    } else {
+                        // 選單關閉時恢復滾動
+                        document.body.classList.remove('menu-open');
+                    }
+                }
+            });
+        });
         
-        if (window.scrollY > heroBottom) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+        observer.observe(navbarCollapse, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+    }
+    
+    // 綁定關閉按鈕事件
+    if (menuCloseBtn) {
+        menuCloseBtn.addEventListener('click', () => {
+            closeBootstrapMenu(navbarCollapse, navbarToggler);
+        });
+    }
+    
+    // 綁定導航連結點擊事件 - 點擊連結後關閉選單
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            // 延遲關閉，讓連結有時間跳轉
+            setTimeout(() => {
+                closeBootstrapMenu(navbarCollapse, navbarToggler);
+            }, 100);
+        });
+    });
+    
+    // 點擊選單外部區域關閉選單
+    document.addEventListener('click', (e) => {
+        if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+            // 檢查點擊是否在選單外部
+            if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
+                closeBootstrapMenu(navbarCollapse, navbarToggler);
+            }
         }
     });
+    
+    // ESC 鍵關閉選單
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navbarCollapse && navbarCollapse.classList.contains('show')) {
+            closeBootstrapMenu(navbarCollapse, navbarToggler);
+        }
+    });
+    
+    console.log('Bootstrap 導航選單初始化完成');
+}
+
+/**
+ * 關閉 Bootstrap 選單
+ * @param {Element} navbarCollapse - 選單容器
+ * @param {Element} navbarToggler - 漢堡按鈕
+ */
+function closeBootstrapMenu(navbarCollapse, navbarToggler) {
+    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+        // 移除 show 類別
+        navbarCollapse.classList.remove('show');
+        
+        // 更新漢堡按鈕狀態
+        if (navbarToggler) {
+            navbarToggler.classList.add('collapsed');
+            navbarToggler.setAttribute('aria-expanded', 'false');
+        }
+        
+        // 恢復背景滾動
+        document.body.classList.remove('menu-open');
+    }
 }
 
 // ===== NAVIGATION MENU =====
@@ -263,7 +349,8 @@ function initIntersectionObserver() {
  */
 document.addEventListener('DOMContentLoaded', function() {
     // 初始化各個功能模組
-    initHeaderScrollEffect();
+    // initHeaderScrollEffect(); // 已移至 scroll.js 統一處理
+    initBootstrapNavigation(); // 新增 Bootstrap 選單初始化
     initNavigationMenu();
     initSmoothScrolling();
     initIntersectionObserver();

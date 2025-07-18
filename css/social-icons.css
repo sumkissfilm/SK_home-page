@@ -1,103 +1,9 @@
 /* ========================================
-   SOCIAL MEDIA ICONS - FIXED DISPLAY
+   SOCIAL MEDIA ICONS - GENERAL STYLES
    ======================================== */
 
-/* ===== SOCIAL ICONS CONTAINER - MOBILE ===== */
-.social-icons {
-    position: relative;
-    margin-top: auto;
-    justify-content: center;
-    right: auto;
-    padding: 1rem 0;
-    border-top: 1px solid #eee;
-    opacity: 1 !important;
-    transform: none !important;
-    transition: all 0.3s ease 0.35s;
-    width: 100%;
-    display: flex;
-    gap: 1rem;
-}
-
-.navbar-collapse.show .social-icons {
-    opacity: 1 !important;
-    transform: none !important;
-}
-
-/* ===== SOCIAL ICON LINKS - MOBILE ===== */
-.social-icons a {
-    color: #333;
-    font-size: 1.2rem;
-    transition: color 0.3s ease;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: rgba(247, 188, 81, 0.1);
-}
-
-.social-icons a:hover {
-    color: #f7bc51;
-    background: rgba(247, 188, 81, 0.2);
-    transform: scale(1.1);
-}
-
-/* ===== DESKTOP STYLES (≥992px) ===== */
-@media (min-width: 992px) {
-    .social-icons {
-        position: absolute;
-        right: 2rem;
-        margin: 0;
-        padding: 0;
-        border: none;
-        opacity: 1;
-        transform: none;
-        width: auto;
-        transition: none;
-        display: flex;
-        gap: 1.5rem;
-    }
-    
-    .social-icons a {
-        color: #000;
-        font-size: 1.25rem;
-        transition: color 0.3s ease;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        background: rgba(247, 188, 81, 0.1);
-        border-radius: 50%;
-    }
-    
-    .social-icons a:hover {
-        color: #f7bc51;
-        background: none;
-        transform: none;
-    }
-}
-
-/* ===== MOBILE STYLES (≤576px) ===== */
-@media (max-width: 576px) {
-    .social-icons {
-        padding: 1.5rem 0;
-        gap: 1.5rem;
-    }
-    
-    .social-icons a {
-        width: 35px;
-        height: 35px;
-        font-size: 1.2rem;
-        background: rgba(247, 188, 81, 0.1);
-        border-radius: 50%;
-    }
-}
-
 /* ===== FONT AWESOME ICON DISPLAY ===== */
+/* Font Awesome 圖示顯示設定 - 通用樣式 */
 .social-icons a i,
 .social-icons a .fab,
 .social-icons a .fas,
@@ -110,18 +16,19 @@
     font-style: normal !important;
     line-height: 1 !important;
     font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands" !important;
-    font-weight: 900 !important; /* solid weight for Free icons */
+    font-weight: 900 !important;
     text-rendering: auto !important;
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;
 }
 
-/* Specific weight for brand icons */
+/* 品牌圖示特定字重設定 */
 .social-icons a .fab {
-    font-weight: 400 !important; /* brand weight */
+    font-weight: 400 !important;
 }
 
 /* ===== ACCESSIBILITY ===== */
+/* 無障礙功能 - 焦點樣式 */
 .social-icons a:focus {
     outline: 2px solid #f7bc51;
     outline-offset: 2px;

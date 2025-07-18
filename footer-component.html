@@ -1,0 +1,155 @@
+<!-- ========================================
+   SUMMER KISSES - FOOTER COMPONENT
+   ======================================== -->
+<!-- 
+  使用說明：
+  1. 將此檔案內容複製到其他頁面的 </main> 標籤後、</body> 標籤前
+  2. 確保已引入 style.css 檔案
+  3. 根據需要調整聯絡資訊、社群媒體連結和版權資訊
+  4. 支援響應式設計，自動適應不同螢幕尺寸
+-->
+
+<!-- ===== FOOTER ===== -->
+<!-- 頁尾區塊 - 使用 style.css 中的 footer 相關樣式 -->
+<!-- 響應式設計：桌面版雙欄佈局，手機版單欄居中佈局 -->
+<footer>
+    <div class="footer-content">
+        <!-- Contact Information Section -->
+        <!-- 聯絡資訊區塊 - 包含 Instagram、Email 和首頁連結 -->
+        <div class="footer-section">
+            <p>Instagram：<a href="https://www.instagram.com/sumkiss.film/">sumkiss.film</a></p>
+            <p>商業合作：<a href="mailto:sumkiss.film@gmail.com">sumkiss.film@gmail.com</a></p>
+            <p><a href="https://sumkissfilm.github.io/SK_home-page/">首頁</a></p>
+        </div>
+        
+        <!-- Social Media Links Section -->
+        <!-- 社群媒體連結區塊 - 包含 YouTube、Instagram、Facebook 圖示 -->
+        <div class="footer-section">
+            <p>追蹤我們</p>
+            <div class="social-links">
+                <a href="https://www.youtube.com/@sumkiss" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.instagram.com/sumkiss.film/" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/sumkiss.film" aria-label="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Copyright Section -->
+    <!-- 版權資訊區塊 - 包含版權聲明和技術支援資訊 -->
+    <div class="footer-bottom">
+        <p>Copyright &copy; 2024 Summer Kisses 影像工作室 版權所有｜網頁設計 by Gary Chan｜技術支持 by Jinhe Chen</p>
+    </div>
+</footer>
+
+<!-- ===== REQUIRED CSS FILES ===== -->
+<!-- 
+  請確保在 <head> 中引入以下 CSS 檔案：
+  <link rel="stylesheet" href="css/style.css">
+  
+  Footer 相關樣式說明：
+  - footer: 深色背景 (#333)，白色文字，上下內距 3rem
+  - .footer-content: Grid 佈局，桌面版雙欄，手機版單欄
+  - .footer-section: 垂直排列，間距 1rem
+  - .social-links: 水平排列的社群媒體圖示
+  - .footer-bottom: 版權資訊，置中對齊，上方有分隔線
+-->
+
+<!-- ===== RESPONSIVE BREAKPOINTS ===== -->
+<!-- 
+  響應式斷點說明：
+  
+  桌面版 (≥992px):
+  - 雙欄佈局 (1fr 1fr)
+  - 欄位間距 4rem
+  - 社群圖示間距 1.5rem
+  - 版權字體大小 1rem
+  
+  平板版 (≤991px):
+  - 使用桌面版樣式
+  - 自動適應螢幕寬度
+  
+  手機版 (≤768px):
+  - 單欄佈局 (1fr)
+  - 內容置中對齊
+  - 欄位間距 2.5rem
+  - 社群圖示置中
+  - 版權字體大小 13px
+  
+  小手機版 (≤576px):
+  - 欄位間距 2rem
+  - 標題字體大小 15px
+  - 內文字體大小 14px
+  - 社群圖示大小 32px，間距 1rem
+-->
+
+<!-- ===== CUSTOMIZATION GUIDE ===== -->
+<!-- 
+  自訂指南：
+  
+  1. 聯絡資訊修改：
+     - 更改 Instagram 帳號：修改 href 和文字內容
+     - 更改 Email：修改 href 和文字內容
+     - 更改首頁連結：修改 href 屬性
+  
+  2. 社群媒體連結修改：
+     - 新增/移除社群平台：在 .social-links 內新增/移除 <a> 標籤
+     - 更改連結：修改 href 屬性
+     - 更改圖示：修改 <i> 標籤的 class 屬性
+     - 支援的圖示：fab fa-youtube, fab fa-instagram, fab fa-facebook 等
+  
+  3. 版權資訊修改：
+     - 更改年份：修改 Copyright 後的年份
+     - 更改工作室名稱：修改 "Summer Kisses 影像工作室"
+     - 更改設計師/技術支援：修改 "by Gary Chan" 和 "by Jinhe Chen"
+  
+  4. 樣式自訂：
+     - 背景色：修改 footer 的 background-color
+     - 文字顏色：修改 color 屬性
+     - 間距：修改 padding 和 margin 屬性
+     - 字體大小：修改 font-size 屬性
+-->
+
+<!-- ===== ACCESSIBILITY FEATURES ===== -->
+<!-- 
+  無障礙功能：
+  
+  1. 語義化標籤：
+     - 使用 <footer> 標籤定義頁尾區域
+     - 使用 <a> 標籤定義連結
+  
+  2. ARIA 標籤：
+     - 社群媒體連結包含 aria-label 屬性
+     - 提供螢幕閱讀器友好的描述
+  
+  3. 鍵盤導航：
+     - 所有連結都可以透過 Tab 鍵導航
+     - 支援 Enter 鍵啟用連結
+  
+  4. 色彩對比：
+     - 深色背景 (#333) 配白色文字，確保足夠對比度
+     - 連結懸停時變為金色 (#f7bc51)，提供視覺回饋
+-->
+
+<!-- ===== PERFORMANCE OPTIMIZATION ===== -->
+<!-- 
+  效能優化：
+  
+  1. CSS 優化：
+     - 使用 CSS Grid 進行佈局，效能優於 Flexbox
+     - 最小化重繪和重排
+     - 使用 transform 進行動畫效果
+  
+  2. 圖片優化：
+     - 社群媒體圖示使用 Font Awesome，向量圖示無失真
+     - 減少 HTTP 請求數量
+  
+  3. 響應式圖片：
+     - 使用 CSS 媒體查詢，避免載入不必要的樣式
+     - 根據螢幕尺寸調整佈局和字體大小
+--> 

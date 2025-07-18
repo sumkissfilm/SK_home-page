@@ -19,13 +19,19 @@
     <link href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap" rel="stylesheet">
     
     <!-- ===== LOCAL STYLESHEETS ===== -->
+    <!-- 主要樣式檔案 - 包含全域樣式、各區塊樣式、響應式設計 -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/navigation.css">
-    <link rel="stylesheet" href="css/navigation-fonts.css">
+    <!-- 頁首導航樣式檔案 - 包含 header、導航列、漢堡選單、選單動畫、社群圖示 -->
+    <link rel="stylesheet" href="css/header-navigation.css">
+    <!-- 社群媒體圖示樣式檔案 - 包含社群媒體圖示樣式 -->
     <link rel="stylesheet" href="css/social-icons.css">
-    <link rel="stylesheet" href="css/youtube-theme.css">
+    <!-- Footer 樣式檔案 - 包含頁尾樣式、響應式設計、無障礙功能 -->
+    <link rel="stylesheet" href="css/footer.css">
+    <!-- YouTube 主題樣式檔案 - 包含 YouTube 嵌入影片樣式 -->
+    <!-- 注意：此檔案目前不存在，YouTube 樣式已整合到 style.css 中 -->
     
     <!-- ===== LOADING ANIMATION STYLES ===== -->
+    <!-- 載入動畫樣式 - 內嵌在 HTML 中，包含載入畫面、進度條、淡出動畫 -->
     <style>
         /* Loading Animation Container */
         .loader-wrapper {
@@ -152,6 +158,7 @@
 
 <body>
     <!-- ===== LOADING ANIMATION ===== -->
+    <!-- 載入動畫區塊 - 由內嵌 JavaScript 控制載入進度和淡出效果 -->
     <div class="loader-wrapper">
         <img src="images/header/summerkiss-logo.png" alt="Summer Kisses Film" class="loader-logo">
         <div class="loading-container">
@@ -161,6 +168,13 @@
     </div>
 
     <!-- ===== HEADER & NAVIGATION ===== -->
+    <!--
+        Header 導覽列區塊
+        - 樣式主要由 css/header-navigation.css 控制
+        - 滾動超過 hero 區塊時，header 會自動加上 .scrolled 類別，顯示白色背景
+        - 相關 JS 控制於 js/scroll.js（負責滾動監聽與 class 切換）
+        - Bootstrap 負責響應式選單展開收合
+    -->
     <header>
         <nav class="navbar navbar-expand-lg fixed-top">
             <div class="container-fluid">
@@ -171,12 +185,17 @@
                 
                 <!-- Mobile Menu Toggle Button -->
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span>MENU</span>
+                    <span></span>
                     <span class="icon-bar"></span>
                 </button>
                 
                 <!-- Navigation Menu -->
                 <div class="collapse navbar-collapse" id="navbarNav">
+                    <!-- 關閉按鈕 -->
+                    <!--<button class="menu-close-btn" type="button" aria-label="關閉選單">
+                        <span class="close-icon">×</span>
+                    </button>-->
+                    
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="https://sumkissfilm.github.io/SK_aboutpage/" style="white-space: nowrap;">關於我們</a>
@@ -198,6 +217,7 @@
                     </ul>
                     
                     <!-- Social Media Icons -->
+                    <!-- 社群媒體圖示區塊 - 使用 header-navigation.css 樣式 -->
                     <div class="social-icons">
                         <a href="http://www.youtube.com/@sumkiss" target="_blank" aria-label="YouTube">
                             <i class="fab fa-youtube"></i>
@@ -217,12 +237,15 @@
     <!-- ===== MAIN CONTENT ===== -->
     <main>
         <!-- Hero Section -->
+        <!-- 主要橫幅區塊 - 使用 style.css 中的 .hero 樣式 -->
+        <!-- 由 scroll.js 監控滾動位置，控制頁首背景色變化 -->
         <section class="hero">
             <div class="hero-content">  
             </div>
         </section>
 
         <!-- About Us Section -->
+        <!-- 關於我們區塊 - 使用 style.css 中的 .body001 和 .text-content 樣式 -->
         <section class="body001">
             <div class="text-content">
                 <img src="images/header/header/Summer Kisses LOGO.png" alt="Summer Kisses Logo">
@@ -232,6 +255,7 @@
         </section>
 
         <!-- Image Gallery Section -->
+        <!-- 圖片展示區塊 - 使用 style.css 中的 .body002 和 .image-container 樣式 -->
         <section class="body002">
             <div class="image-container">
                 <div class="image-left">
@@ -244,6 +268,8 @@
         </section>
 
         <!-- Video Portfolio Section -->
+        <!-- 影片作品集區塊 - 使用 style.css 中的 .body004 和 .image-grid 樣式 -->
+        <!-- 使用 youtube-theme.css 優化 YouTube 嵌入影片顯示 -->
         <section class="body004">
             <div class="section-title">
                 <!-- Hidden Title
@@ -315,7 +341,10 @@
             </div>
         </section>
 
-        <!-- Hidden Section - Body003
+        <!-- Hidden Section - Body003 -->
+        <!-- 隱藏的愛情故事區塊 - 使用 style.css 中的 .body003 樣式 -->
+        <!-- 目前被註解掉，包含愛情故事和登記紀實內容 -->
+        <!--
         <section class="body003">
             <div class="row-title">
                 <h2>愛情故事｜登記紀實</h2>
@@ -356,6 +385,7 @@
     </main>
 
     <!-- ===== FOOTER ===== -->
+    <!-- 頁尾區塊 - 使用 css/footer.css 中的 footer 相關樣式 -->
     <footer>
         <div class="footer-content">
             <!-- Contact Information -->
@@ -391,14 +421,21 @@
     <!-- ===== SCRIPTS ===== -->
     
     <!-- External Scripts -->
+    <!-- Bootstrap JavaScript - 提供導航列響應式功能 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Instagram Embed Script - 用於 Instagram 內容嵌入 -->
     <script async src="//www.instagram.com/embed.js"></script>
     
     <!-- Local Scripts -->
+    <!-- 主要 JavaScript 檔案 - 包含導航選單、滾動效果、互動功能 -->
     <script src="js/main.js"></script>
+    <!-- 滾動效果 JavaScript 檔案 - 專門處理頁首滾動背景色變化 -->
     <script src="js/scroll.js"></script>
+    <!-- Footer JavaScript 檔案 - 包含頁尾互動功能、動畫效果、無障礙功能 -->
+    <script src="js/footer.js"></script>
     
     <!-- Loading Animation Script -->
+    <!-- 載入動畫 JavaScript - 內嵌在 HTML 中，控制載入進度和淡出效果 -->
     <script>
         // Loading Animation Handler
         window.addEventListener('load', function() {
