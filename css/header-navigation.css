@@ -485,6 +485,7 @@ body.menu-open {
     .navbar .container-fluid {
         padding: 0;
         justify-content: space-between;
+        position: relative;
     }
     
     .navbar-brand {
@@ -500,7 +501,9 @@ body.menu-open {
     }
     
     .navbar-toggler {
-        margin-right: 30px;
+        position: absolute;
+        right: 0;
+        margin-right: 0;
         z-index: 1002;
     }
     
@@ -520,6 +523,7 @@ body.menu-open {
     .navbar .container-fluid {
         padding: 0;
         justify-content: space-between;
+        position: relative;
     }
     
     .navbar-brand {
@@ -535,7 +539,9 @@ body.menu-open {
     }
     
     .navbar-toggler {
-        margin-right: 20px;
+        position: absolute;
+        right: 0;
+        margin-right: 0;
         z-index: 1002;
     }
     
