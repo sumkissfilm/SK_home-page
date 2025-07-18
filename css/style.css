@@ -530,19 +530,7 @@ body {
     }
 }
 
-/* 手機版品牌標誌調整 */
-.navbar-brand {
-    width: 180px;        /* 調整寬度 */
-    margin-left: 0;      /* 移除左邊距 */
-    position: absolute;  /* 絕對定位 */
-    left: 50%;          /* 左側 50% */
-    transform: translateX(-50%); /* 水平置中 */
-}
-
-/* 手機版品牌標誌圖片調整 */
-.navbar-brand img {
-    height: 30px;        /* 調整高度 */
-}
+/* 手機版品牌標誌調整 - 已移至 header-navigation.css */
 
 /* ===== SECTION TITLE RESPONSIVE ADJUSTMENTS ===== */
 /* 影片作品集標題響應式調整 */

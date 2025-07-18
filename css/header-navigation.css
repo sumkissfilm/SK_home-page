@@ -493,6 +493,27 @@ body.menu-open {
 
 /* ===== DESKTOP STYLES (≥992px) - 桌面版樣式 ===== */
 @media (min-width: 992px) {
+    /* 桌面版品牌標誌調整 */
+    .navbar-brand {
+        position: relative;       /* 相對定位 */
+        width: 300px;            /* 固定寬度 */
+        height: 50px;            /* 固定高度 */
+        margin-left: 50px;       /* 左側邊距 */
+        display: flex;           /* 使用 flexbox 布局 */
+        align-items: center;     /* 垂直置中 */
+        text-decoration: none;   /* 移除連結底線 */
+        transition: all 0.3s ease; /* 平滑過渡效果 */
+        z-index: 1001;           /* 確保在漢堡選單之上 */
+        flex-shrink: 0;          /* 防止在 flex 容器中被壓縮 */
+    }
+    
+    /* 桌面版品牌標誌圖片調整 */
+    .navbar-brand img {
+        height: 40px;            /* 圖片高度 */
+        width: auto;             /* 寬度自動調整保持比例 */
+        transition: all 0.3s ease; /* 平滑過渡效果 */
+    }
+    
     /* 桌面版選單容器 - 改為靜態定位 */
     .navbar-collapse {
         position: static;    /* 靜態定位 */
@@ -678,6 +699,11 @@ body.menu-open {
         height: 35px;        /* 調整高度 */
     }
     
+    /* 平板版品牌標誌懸停效果修正 - 避免位置偏移 */
+    .navbar-brand:hover {
+        transform: translateX(-50%) scale(1.05); /* 保持置中並放大 */
+    }
+    
     /* 平板版漢堡選單按鈕調整 */
     .navbar-toggler {
         position: absolute;  /* 絕對定位 */
@@ -721,6 +747,11 @@ body.menu-open {
         height: 30px;        /* 調整高度 */
     }
     
+    /* 手機版品牌標誌懸停效果修正 - 避免位置偏移 */
+    .navbar-brand:hover {
+        transform: translateX(-50%) scale(1.05); /* 保持置中並放大 */
+    }
+    
     /* 手機版漢堡選單按鈕調整 */
     .navbar-toggler {
         position: absolute;  /* 絕對定位 */
@@ -761,7 +792,4 @@ body.menu-open {
         border-radius: 50%;  /* 圓形背景 */
     }
 
-    .navbar-brand:hover {
-        transform: translateX(-50%) !important; /* 保持置中，不放大 */
-    }
 } 
