@@ -760,4 +760,8 @@ body.menu-open {
         background: rgba(247, 188, 81, 0.1); /* 半透明背景 */
         border-radius: 50%;  /* 圓形背景 */
     }
+
+    .navbar-brand:hover {
+        transform: translateX(-50%) !important; /* 保持置中，不放大 */
+    }
 } 
